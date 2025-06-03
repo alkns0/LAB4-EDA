@@ -1,6 +1,9 @@
 import java.util.Stack;
-public class Main
-{
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.ArrayList;
+
+public class Main {
     
     public class Paciente {
         String nombre;
@@ -28,6 +31,39 @@ public class Main
         
         String obtenerUltimoCambio(){
             return "";
+        }
+        
+        
+    }
+
+    public class AreaAtencion {
+        public AreaAtencion(){}
+    }
+
+    public class Hospital {
+        Map <String, Paciente> pacientesTotales;
+        Map <String, AreaAtencion> areasAtencion;
+        ArrayList <Paciente> pacientesAtendidos;
+        
+        public Hospital(){}
+        
+        public void registrarPacientes(){}
+        
+        public void reasignarCategoria(){}
+        
+        public Paciente atenderSiguiente(){
+            Paciente p = new Paciente();
+            return p;
+        }
+        
+        public ArrayList <Paciente> obtenerPacientesPorCategoria(int categoria){
+            ArrayList <Paciente> lista = new ArrayList <Paciente>();
+            return lista;
+        }
+        
+        public AreaAtencion obtenerArea(String nombre){
+            AreaAtencion a = new AreaAtencion();
+            return a;
         }
         
         
