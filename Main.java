@@ -37,7 +37,26 @@ public class Main {
     }
 
     public class AreaAtencion {
+        String nombre;
+        PriorityQueue <Paciente> pacientesHeap;
+        int capacidadMaxima;
+        
         public AreaAtencion(){}
+        
+        public void ingresarPaciente(Paciente p){}
+        
+        public Paciente atenderPaciente(){
+            Paciente p = new Paciente("","","");
+            return p;
+        }
+        
+        public boolean estaSaturada(){ return false; }
+        
+        public ArrayList<Paciente>obtenerPacientesPorHeapSort(){
+            ArrayList <Paciente> lista = new ArrayList <Paciente>();
+            return lista;
+        }
+        
     }
 
     public class Hospital {
