@@ -87,6 +87,17 @@ public class Main {
         
         
     }
+
+    public class GeneradorPacientes {
+        String[] palabras = {"Roberto","Juan","Alfredo","Francica","Martina","Gonzalo","Rodrigo"};
+        int rnd1 = new Random().nextInt(palabras.length);
+        String nombre = palabras[rnd1];        
+        int rnd1 = new Random().nextInt(palabras.length);
+        int rnd2 = (int) (Math.random() * 1000000) + 1;
+        String rut = String.valueOf(rnd2);
+        
+        Paciente p = new Paciente(nombre, rut, "");
+    }
     
 	public static void main(String[] args) {
 		System.out.println("Hello World");
