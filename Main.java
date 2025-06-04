@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 import java.util.ArrayList;
 
 public class Main {
-    
+    //clase Paciente casi terminada, hay que verificar el metodo tiempoEsperaActual()
     public class Paciente {
         String nombre;
         String apellido;
@@ -22,15 +22,16 @@ public class Main {
         }
         
         public long tiempoEsperaActual(){
-            return 0;
+        	long ahora = System.currentTimeMillis()/1000;
+       		return ahora-tiempoLLegada;
         }
         
         void registrarCambio(String descripcion){
-            
+            historialCambios.push(descripcion);
         }
         
         String obtenerUltimoCambio(){
-            return "";
+            return historialCambios.pop();
         }
         
         
