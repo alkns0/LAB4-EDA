@@ -35,29 +35,49 @@ public class Main {
         
         
     }
+	//Area de atención lista.
+    class AreaAtencion{
 
-    public class AreaAtencion {
-        String nombre;
-        PriorityQueue <Paciente> pacientesHeap;
-        int capacidadMaxima;
-        
-        public AreaAtencion(){}
-        
-        public void ingresarPaciente(Paciente p){}
-        
-        public Paciente atenderPaciente(){
-            Paciente p = new Paciente("","","");
-            return p;
-        }
-        
-        public boolean estaSaturada(){ return false; }
-        
-        public ArrayList<Paciente>obtenerPacientesPorHeapSort(){
-            ArrayList <Paciente> lista = new ArrayList <Paciente>();
-            return lista;
-        }
-        
+    String nombre;
+    PriorityQueue<Paciente> pacientesHeap;
+    int capacidadMax;
+
+    public AreaAtencion(int num){
+        this.nombre = "";
+        this.pacientesHeap = new PriorityQueue<>(Comparator.comparingInt((Paciente p)-> p.categoria).thenComparingLong(p-> p.tiempoLLegada));
+        this.capacidadMax = num;
     }
+
+    public AreaAtencion(String nombre, int capacidadMax) {
+        this.nombre = nombre;
+        this.capacidadMax = capacidadMax;
+        this.pacientesHeap = new PriorityQueue<>(Comparator.comparingInt((Paciente p)-> p.categoria).thenComparingLong(p-> p.tiempoLLegada));
+    }
+
+    public void ingresarPaciente(Paciente pa){
+        pacientesHeap.add(pa);
+    }
+
+    public Paciente atenderPaciente(){
+        return pacientesHeap.poll();
+    }
+
+    public boolean estaSaturada(){
+        if(pacientesHeap.size()<capacidadMax){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public List<Paciente> obtenerPacientesPorHeapSort(){
+        List<Paciente> pacientes = new ArrayList<>();
+        for(Paciente p: pacientesHeap){
+            pacientes.add(p);
+        }
+        return pacientes;
+    }
+}
 
     public class Hospital {
         Map <String, Paciente> pacientesTotales;
