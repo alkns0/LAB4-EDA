@@ -120,8 +120,12 @@ public class Main {
         //Obtener paciente por categoria
         public ArrayList <Paciente> obtenerPacientesPorCategoria(int categoria){
             ArrayList <Paciente> lista = new ArrayList <Paciente>();
+            ArrayList<Paciente> temporal = new ArrayList<>(colaAtencion);
             for(int i = 0; i < colaAtencion.size(); i++){
-              
+              Paciente paciente = temporal.get(i);
+              if (paciente.categoria == categoria) {
+                lista.add(paciente);
+              }
             }
             return lista;
         }
