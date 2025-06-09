@@ -2,6 +2,9 @@ import java.util.Stack;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
     //clase Paciente casi terminada, hay que verificar el metodo tiempoEsperaActual()
@@ -14,7 +17,9 @@ public class Main {
         String estado;
         String area;
         Stack <String> historialCambios;
-        
+
+	public Paciente(){} //Constructor de prueba
+	
         public Paciente(String nombre, String apellido, String id){
             this.nombre = nombre;
             this.apellido = apellido;
@@ -23,7 +28,7 @@ public class Main {
         
         public long tiempoEsperaActual(){
         	long ahora = System.currentTimeMillis()/1000;
-       		return ahora-tiempoLLegada;
+       		return ahora-tiempoLlegada;
         }
         
         void registrarCambio(String descripcion){
@@ -37,31 +42,34 @@ public class Main {
         
     }
 	//Area de atención lista.
-    class AreaAtencion{
+    class AreaAtencion {
 
     String nombre;
     PriorityQueue<Paciente> pacientesHeap;
     int capacidadMax;
 
-    public AreaAtencion(int num){
-        this.nombre = "";
-        this.pacientesHeap = new PriorityQueue<>(Comparator.comparingInt((Paciente p)-> p.categoria).thenComparingLong(p-> p.tiempoLLegada));
-        this.capacidadMax = num;
-    }
+	public AreaAtencion(){} //Constructor de prueba
 
-    public AreaAtencion(String nombre, int capacidadMax) {
-        this.nombre = nombre;
-        this.capacidadMax = capacidadMax;
-        this.pacientesHeap = new PriorityQueue<>(Comparator.comparingInt((Paciente p)-> p.categoria).thenComparingLong(p-> p.tiempoLLegada));
-    }
 
-    public void ingresarPaciente(Paciente pa){
-        pacientesHeap.add(pa);
-    }
+	public AreaAtencion(int num){
+		this.nombre = "";
+		this.pacientesHeap = new PriorityQueue<>(Comparator.comparingInt((Paciente p)-> p.categoria).thenComparingLong(p-> p.tiempoLlegada));
+		this.capacidadMax = num;
+	}
+	
+	public AreaAtencion(String nombre, int capacidadMax) {
+		this.nombre = nombre;
+		this.capacidadMax = capacidadMax;
+		this.pacientesHeap = new PriorityQueue<>(Comparator.comparingInt((Paciente p)-> p.categoria).thenComparingLong(p-> p.tiempoLlegada));
+	}
 
-    public Paciente atenderPaciente(){
-        return pacientesHeap.poll();
-    }
+	public void ingresarPaciente(Paciente pa){
+		pacientesHeap.add(pa);
+	}
+
+	public Paciente atenderPaciente(){
+		return pacientesHeap.poll();
+	}
 
     public boolean estaSaturada(){
         if(pacientesHeap.size()<capacidadMax){
@@ -114,7 +122,6 @@ public class Main {
         String[] palabras = {"Roberto","Juan","Alfredo","Francica","Martina","Gonzalo","Rodrigo"};
         int rnd1 = new Random().nextInt(palabras.length);
         String nombre = palabras[rnd1];        
-        int rnd1 = new Random().nextInt(palabras.length);
         int rnd2 = (int) (Math.random() * 1000000) + 1;
         String rut = String.valueOf(rnd2);
         
