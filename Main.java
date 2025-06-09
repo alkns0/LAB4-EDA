@@ -25,23 +25,23 @@ public class Main {
             this.apellido = apellido;
             this.id = id;
         }
-        
+
+	//Tiempo de espera de paciente
         public long tiempoEsperaActual(){
         	long ahora = System.currentTimeMillis()/1000;
        		return ahora-tiempoLlegada;
         }
-        
+        //Regstrar cambio de paciente
         void registrarCambio(String descripcion){
             historialCambios.push(descripcion);
         }
-        
+        //Obtener último cambio de paciente
         String obtenerUltimoCambio(){
             return historialCambios.pop();
         }
         
         
     }
-	//Area de atención lista.
     class AreaAtencion {
 
     String nombre;
@@ -62,31 +62,31 @@ public class Main {
 		this.capacidadMax = capacidadMax;
 		this.pacientesHeap = new PriorityQueue<>(Comparator.comparingInt((Paciente p)-> p.categoria).thenComparingLong(p-> p.tiempoLlegada));
 	}
-
+	//Ingresar paciente
 	public void ingresarPaciente(Paciente pa){
 		pacientesHeap.add(pa);
 	}
-
+	//Atender paciente
 	public Paciente atenderPaciente(){
 		return pacientesHeap.poll();
 	}
+	//Saturado
+	public boolean estaSaturada(){
+		if(pacientesHeap.size()<capacidadMax){
+		    return false;
+		}else {
+		    return true;
+		}
+	}
 
-    public boolean estaSaturada(){
-        if(pacientesHeap.size()<capacidadMax){
-            return false;
-        }else {
-            return true;
-        }
-    }
-
-    public List<Paciente> obtenerPacientesPorHeapSort(){
-        List<Paciente> pacientes = new ArrayList<>();
-        PriorityQueue<Paciente> copia = new PriorityQueue<>(pacientesHeap);
-        while (!copia.isEmpty()){
-            pacientes.add(copia.poll());
-        }
-        return pacientes;
-    }
+	public List<Paciente> obtenerPacientesPorHeapSort(){
+		List<Paciente> pacientes = new ArrayList<>();
+		PriorityQueue<Paciente> copia = new PriorityQueue<>(pacientesHeap);
+		while (!copia.isEmpty()){
+		    pacientes.add(copia.poll());
+		}
+		return pacientes;
+	}
 }
 
     public class Hospital {
