@@ -90,29 +90,45 @@ public class Main {
 }
 
     public class Hospital {
+      
         Map <String, Paciente> pacientesTotales;
+        PriorityQueue<Paciente> colaAtencion; 
         Map <String, AreaAtencion> areasAtencion;
         ArrayList <Paciente> pacientesAtendidos;
         
         public Hospital(){}
         
-        public void registrarPacientes(){}
+        //Registrar paciente
+        public void registrarPacientes(Paciente p){
+          colaAtencion.add(p);
+          pacientesTotales.put(p.nombre, p);
+        }
         
-        public void reasignarCategoria(){}
+        //Asignar nueva categoria a un paciente
+        public void reasignarCategoria(String id, int nuevaCategoria){
+          Paciente p = pacientesTotales.get(id);
+          p.categoria = nuevaCategoria;
+          p.historialCambios.push("Se cambió a categoría " + nuevaCategoria);
+        }
         
+        //Atender siguiente paciente
         public Paciente atenderSiguiente(){
             Paciente p = new Paciente();
             return p;
         }
         
+        //Obtener paciente por categoria
         public ArrayList <Paciente> obtenerPacientesPorCategoria(int categoria){
             ArrayList <Paciente> lista = new ArrayList <Paciente>();
+            for(int i = 0; i < colaAtencion.size(); i++){
+              
+            }
             return lista;
         }
         
+        //Obtener area de atención por nombre
         public AreaAtencion obtenerArea(String nombre){
-            AreaAtencion a = new AreaAtencion();
-            return a;
+            return areasAtencion.get(nombre);
         }
         
         
